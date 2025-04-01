@@ -240,8 +240,8 @@
   .punto {
     width: 14px;
     height: 14px;
-    border: 2px solid #3C6D71;
     border-radius: 50%;
+    border: 2px solid #3C6D71;
     background-color: black;
   }
   .punto.activo {
@@ -323,7 +323,6 @@ const totalSlides = 3;
           currentSlide--;
         }
         slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
-  updatePuntos();
       }
       xStart = null;
     }
@@ -354,7 +353,6 @@ function handleTouchEnd(evt) {
       currentSlide--;
     }
     slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
-  updatePuntos();
     updatePuntos();
   }
   startX = null;
@@ -369,6 +367,28 @@ function updatePuntos() {
 }
 
 updatePuntos();
+
+function handleTouchStart(evt) {
+  const touch = evt.touches[0];
+  startX = touch.clientX;
+}
+
+function handleTouchEnd(evt) {
+  if (startX === null) return;
+  let endX = evt.changedTouches[0].clientX;
+  let xDiff = startX - endX;
+  if (Math.abs(xDiff) > 50) {
+    if (xDiff > 0 && currentSlide < totalSlides - 1) {
+      currentSlide++;
+    } else if (xDiff < 0 && currentSlide > 0) {
+      currentSlide--;
+    }
+    let slider = document.getElementById("slider");
+    slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
+    updatePuntos();
+  }
+  startX = null;
+}
 </script>
 </body>
 </html>
