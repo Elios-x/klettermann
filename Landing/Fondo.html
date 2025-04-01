@@ -275,42 +275,35 @@
     </div>
   </div>
 
-  <script>
-    let slider = document.getElementById('slider');
-    let currentSlide = 0;
-    let totalSlides = 3;
+  
+<script>
+  let slider = document.getElementById('slider');
+  let currentSlide = 0;
+  let totalSlides = 3;
 
-    window.addEventListener('touchstart', handleTouchStart, false);
-    window.addEventListener('touchend', handleTouchEnd, false);
+  let startX = null;
 
-    let xStart = null;
+  window.addEventListener('touchstart', function (evt) {
+    const touch = evt.touches[0];
+    startX = touch.clientX;
+  });
 
-     else if (xDiff < 0 && currentSlide > 0) {
-          currentSlide--;
-        }
-        slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
+  window.addEventListener('touchend', function (evt) {
+    if (startX === null) return;
+    let endX = evt.changedTouches[0].clientX;
+    let xDiff = startX - endX;
+
+    if (Math.abs(xDiff) > 50) {
+      if (xDiff > 0 && currentSlide < totalSlides - 1) {
+        currentSlide++;
+      } else if (xDiff < 0 && currentSlide > 0) {
+        currentSlide--;
       }
-      xStart = null;
+      slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
     }
-  function updatePuntos() {
-  for (let i = 0; i < totalSlides; i++) {
-    const punto = document.getElementById(`punto${i}`);
-    if (punto) punto.classList.remove("activo");
-  }
-  const active = document.getElementById(`punto${currentSlide}`);
-  if (active) active.classList.add("activo");
-}
-
-updatePuntos();
-
- else if (xDiff < 0 && currentSlide > 0) {
-      currentSlide--;
-    }
-    slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
-    updatePuntos();
-  }
-  startX = null;
-}
+    startX = null;
+  });
 </script>
+
 </body>
 </html>
