@@ -194,13 +194,6 @@
   .punto.activo {
     background-color: #F4743B;
   }
-  .bloques {
-    display: flex;
-    flex-direction: row;
-    width: 300vw;
-    transform: translateX(0);
-    transition: transform 0.3s ease;
-  }
   .bloque {
     height: 100vh;
     display: flex;
@@ -210,6 +203,7 @@
     padding: 20px;
     box-sizing: border-box;
     width: 100vw;
+    transform: translateY(-25%);
   }
 </style>
 </head>
@@ -294,21 +288,25 @@
 
 updatePuntos();
 
+function handleTouchStart(evt) {
+  const touch = evt.touches[0];
+  startX = touch.clientX;
+}
+
 function handleTouchEnd(evt) {
-  if (startX === null || startY === null) return;
+  if (startX === null) return;
   let endX = evt.changedTouches[0].clientX;
-  let endY = evt.changedTouches[0].clientY;
   let xDiff = startX - endX;
-  let yDiff = startY - endY;
-  if (Math.abs(xDiff) > Math.abs(yDiff)) {
-    currentSlide = (xDiff > 0) ? (currentSlide + 1) % totalSlides : (currentSlide - 1 + totalSlides) % totalSlides;
-  } else {
-    currentSlide = (yDiff > 0) ? (currentSlide + 1) % totalSlides : (currentSlide - 1 + totalSlides) % totalSlides;
+  if (Math.abs(xDiff) > 50) {
+    if (xDiff > 0 && currentSlide < totalSlides - 1) {
+      currentSlide++;
+    } else if (xDiff < 0 && currentSlide > 0) {
+      currentSlide--;
+    }
+    slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
+    updatePuntos();
   }
-  slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
-  updatePuntos();
   startX = null;
-  startY = null;
 }
 </script>
 </body>
