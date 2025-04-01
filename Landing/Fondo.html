@@ -62,7 +62,6 @@
     }
 
     .bloques {
-  padding-top: 120px;
       display: flex;
       flex-direction: row;
       width: 300vw;
@@ -123,6 +122,9 @@
     }
 
     @media (max-width: 768px) {
+  body {
+    overflow-y: hidden;
+  }
   .bloque {
     margin-top: -150px;
     height: 100vh;
@@ -148,7 +150,6 @@
     }
     @media (min-width: 769px) {
     .bloques {
-  padding-top: 120px;
       flex-direction: column;
       width: 100vw;
     }
