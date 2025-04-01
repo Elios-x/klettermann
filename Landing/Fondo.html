@@ -123,15 +123,19 @@
 
     @media (max-width: 768px) {
   html, body {
-    height: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
     overflow: hidden;
   }
   .bloques {
-    height: 100vh;
+    display: flex;
     flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
   }
   .bloque {
-    height: 100vh;
+    flex: 1 0 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
