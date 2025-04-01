@@ -122,6 +122,9 @@
     }
 
     @media (max-width: 768px) {
+  .bloque {
+    padding-top: 15px;
+  }
   body {
     overflow-y: hidden;
   }
@@ -185,6 +188,7 @@
     box-sizing: border-box;
   }
   .puntos-nav {
+  display: flex;
     position: fixed;
     bottom: 20px;
     left: 0;
@@ -206,7 +210,8 @@
   }
   @media (min-width: 769px) {
     .puntos-nav {
-      display: none;
+  display: flex;
+      display: none !important;
     }
   }
 </style>
