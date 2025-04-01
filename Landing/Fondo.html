@@ -62,6 +62,7 @@
     }
 
     .bloques {
+  padding-top: 250px;
       display: flex;
       flex-direction: row;
       width: 300vw;
@@ -123,7 +124,7 @@
 
     @media (max-width: 768px) {
   .bloque {
-    margin-top: -150px;
+    
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -147,6 +148,7 @@
     }
     @media (min-width: 769px) {
     .bloques {
+  padding-top: 250px;
       flex-direction: column;
       width: 100vw;
     }
@@ -213,7 +215,8 @@
     window.addEventListener('touchstart', handleTouchStart, false);
     window.addEventListener('touchend', handleTouchEnd, false);
 
-    let xStart = null;
+    let startX = null;
+  startY = null;
 
     function handleTouchStart(evt) {
       const firstTouch = evt.touches[0];
@@ -233,7 +236,8 @@
         }
         slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
       }
-      xStart = null;
+      startX = null;
+  startY = null;
     }
   </script>
 </body>
