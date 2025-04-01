@@ -1,12 +1,11 @@
 
 <!DOCTYPE html>
-
 <html lang="de">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Über mich</title>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Über mich</title>
+  <style>
     :root {
       --color-azul: #3C6D71;
       --color-naranja: #F4743B;
@@ -246,64 +245,97 @@
 </style>
 </head>
 <body>
-<div class="cabecera">
-<img alt="Foto" class="foto" src="Foto.png"/>
-<div class="nombre">Elias Salvatierra</div>
-</div>
-<div class="bloques" id="slider">
-<div class="bloque">
-<p>
+  <div class="cabecera">
+    <img src="Foto.png" alt="Foto" class="foto" />
+    <div class="nombre">Elias Salvatierra</div>
+  </div>
+
+  <div class="bloques" id="slider">
+    <div class="bloque">
+      <p>
         Ich bin ein guatemaltekischer Techniker, spezialisiert auf Arbeiten in der Höhe und Seilzugangstechnik, mit internationaler Erfahrung in anspruchsvollen Projekten in Katar, Dubai und Abu Dhabi. Diese Arbeiten habe ich unter der Zertifizierung IRATA Level 1 sowie mit dem IPAF-Bedienerausweis ausgeführt. Als Senior Rigger war ich an kritischen Einsätzen beteiligt und habe an technischen Installations und Wartungsarbeiten in großer Höhe mitgewirkt stets unter Einhaltung hoher Sicherheitsstandards.
-      <br/><br/><span style="color:#F4743B;">●</span><span style="color:#3C6D71;">○</span><span style="color:#3C6D71;">○</span></p>
-<div class="puntos-nav-static">● ○ ○</div></div>
-<div class="bloque">
-<p>
+      <br /><br /><span style="color:#F4743B;">●</span><span style="color:#3C6D71;">○</span><span style="color:#3C6D71;">○</span></p>
+    <div class="puntos-nav-static">● ○ ○</div></div>
+    <div class="bloque">
+      <p>
         Dank meiner zertifizierten Ausbildung (FISAT Level 2 und IPAF) kann ich mich schnell in Teams integrieren, die nach strengen Protokollen arbeiten. Ich bringe technische Präzision, Eigenverantwortung und eine lösungsorientierte Denkweise mit. Darüber hinaus bin ich es gewohnt, in komplexen und dynamischen Umgebungen zu arbeiten, was mir ermöglicht, mich rasch anzupassen, technische Probleme vor Ort zu lösen und die operative Effizienz aufrechtzuerhalten.
-      <br/><br/><span style="color:#3C6D71;">○</span><span style="color:#F4743B;">●</span><span style="color:#3C6D71;">○</span></p>
-<div class="puntos-nav-static">○ ● ○</div></div>
-<div class="bloque datos-logo"><div class="contenedor-interno"><div class="contacto">
-<div class="linea-contacto">
-<div class="linea-contacto">
-<div class="icono">📞</div>
+      <br /><br /><span style="color:#3C6D71;">○</span><span style="color:#F4743B;">●</span><span style="color:#3C6D71;">○</span></p>
+    <div class="puntos-nav-static">○ ● ○</div></div>
+    <div class="bloque datos-logo"><div class="contenedor-interno"><div class="contacto">
+        <div class="linea-contacto">
+          <div class="icono">📞<div class="puntos-nav-static">○ ○ ●</div></div></div>
+          <a href="tel:+4915753100729" class="dato-link">+49 15753100729</a>
+        </div>
+        <div class="linea-contacto">
+          <div class="icono">✉️</div>
+          <a href="mailto:elias@klettermann.com" class="dato-link">elias@klettermann.com</a>
+        </div>
+      </div>
+      <img src="Logo.png" alt="Logo" class="logo" />
+    </div>
+  </div>
 
-</div></div>
-<a class="dato-link" href="tel:+4915753100729">+49 15753100729</a>
-</div>
-<div class="linea-contacto">
-<div class="icono">✉️</div>
-<a class="dato-link" href="mailto:elias@klettermann.com">elias@klettermann.com</a>
-</div>
-</div>
-<img alt="Logo" class="logo" src="Logo.png"/>
-</div>
-</div>
-<script>
-  let slider = document.getElementById('slider');
-  let currentSlide = 0;
-  let totalSlides = 3;
+  <script>
+    let slider = document.getElementById('slider');
+    let currentSlide = 0;
+    let totalSlides = 3;
 
-  let startX = null;
+    window.addEventListener('touchstart', handleTouchStart, false);
+    window.addEventListener('touchend', handleTouchEnd, false);
 
-  window.addEventListener('touchstart', function (evt) {
-    const touch = evt.touches[0];
-    startX = touch.clientX;
-  });
+    let xStart = null;
 
-  window.addEventListener('touchend', function (evt) {
-    if (startX === null) return;
-    let endX = evt.changedTouches[0].clientX;
-    let xDiff = startX - endX;
-
-    if (Math.abs(xDiff) > 50) {
-      if (xDiff > 0 && currentSlide < totalSlides - 1) {
-        currentSlide++;
-      } else if (xDiff < 0 && currentSlide > 0) {
-        currentSlide--;
-      }
-      slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
+    function handleTouchStart(evt) {
+      const firstTouch = evt.touches[0];
+      xStart = firstTouch.clientX;
     }
-    startX = null;
-  });
+
+    function handleTouchEnd(evt) {
+      if (!xStart) return;
+      let xEnd = evt.changedTouches[0].clientX;
+      let xDiff = xStart - xEnd;
+
+      if (Math.abs(xDiff) > 50) {
+        if (xDiff > 0 && currentSlide < totalSlides - 1) {
+          currentSlide++;
+        } else if (xDiff < 0 && currentSlide > 0) {
+          currentSlide--;
+        }
+        slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
+      }
+      xStart = null;
+    }
+  function updatePuntos() {
+  for (let i = 0; i < totalSlides; i++) {
+    const punto = document.getElementById(`punto${i}`);
+    if (punto) punto.classList.remove("activo");
+  }
+  const active = document.getElementById(`punto${currentSlide}`);
+  if (active) active.classList.add("activo");
+}
+
+updatePuntos();
+
+function handleTouchStart(evt) {
+  const touch = evt.touches[0];
+  startX = touch.clientX;
+}
+
+function handleTouchEnd(evt) {
+  if (startX === null) return;
+  let endX = evt.changedTouches[0].clientX;
+  let xDiff = startX - endX;
+  if (Math.abs(xDiff) > 50) {
+    if (xDiff > 0 && currentSlide < totalSlides - 1) {
+      currentSlide++;
+    } else if (xDiff < 0 && currentSlide > 0) {
+      currentSlide--;
+    }
+    slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
+    updatePuntos();
+  }
+  startX = null;
+}
 </script>
 </body>
 </html>
