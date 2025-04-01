@@ -425,5 +425,55 @@ window.addEventListener('touchend', handleTouchEnd, false);
 updatePuntos();
 </script>
 
+
+<script>
+  let slider = document.getElementById('slider');
+  let currentSlide = 0;
+  let totalSlides = 3;
+  let startX = null;
+
+  // Configurar los eventos táctiles correctamente para dispositivos iOS
+  function handleTouchStart(evt) {
+    const touch = evt.touches[0];
+    startX = touch.clientX;
+  }
+
+  function handleTouchEnd(evt) {
+    if (startX === null) return;
+    let endX = evt.changedTouches[0].clientX;
+    let xDiff = startX - endX;
+    if (Math.abs(xDiff) > 50) {
+      if (xDiff > 0 && currentSlide < totalSlides - 1) {
+        currentSlide++;
+      } else if (xDiff < 0 && currentSlide > 0) {
+        currentSlide--;
+      }
+      slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
+      updatePuntos();
+    }
+    startX = null;
+  }
+
+  function updatePuntos() {
+    for (let i = 0; i < totalSlides; i++) {
+      const punto = document.getElementById(`punto${i}`);
+      if (punto) {
+        punto.classList.remove("activo");
+      }
+    }
+    const active = document.getElementById(`punto${currentSlide}`);
+    if (active) {
+      active.classList.add("activo");
+    }
+  }
+
+  // Escuchar los eventos de inicio y fin de toque
+  window.addEventListener('touchstart', handleTouchStart, false);
+  window.addEventListener('touchend', handleTouchEnd, false);
+
+  // Inicializamos los puntos al cargar
+  updatePuntos();
+</script>
+
 </body>
 </html>
