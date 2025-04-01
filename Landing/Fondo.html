@@ -122,24 +122,11 @@
     }
 
     @media (max-width: 768px) {
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    overflow: hidden;
-  }
-  .bloques {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    overflow: hidden;
-  }
   .bloque {
-    flex: 1 0 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     padding: 20px;
     box-sizing: border-box;
   }
@@ -218,47 +205,34 @@
   </div>
 
   <script>
-    let slider = document.getElementById("slider");
-let startX, startY;
+    let slider = document.getElementById('slider');
     let currentSlide = 0;
     let totalSlides = 3;
 
     window.addEventListener('touchstart', handleTouchStart, false);
     window.addEventListener('touchend', handleTouchEnd, false);
 
-    let startX = null;
-  startY = null;
+    let xStart = null;
 
     function handleTouchStart(evt) {
-  const touch = evt.touches[0];
-  startX = touch.clientX;
-  startY = touch.clientY;
-}
+      const firstTouch = evt.touches[0];
+      xStart = firstTouch.clientX;
+    }
 
     function handleTouchEnd(evt) {
-  if (startX === null || startY === null) return;
-  let endX = evt.changedTouches[0].clientX;
-  let endY = evt.changedTouches[0].clientY;
-  let xDiff = startX - endX;
-  let yDiff = startY - endY;
+      if (!xStart) return;
+      let xEnd = evt.changedTouches[0].clientX;
+      let xDiff = xStart - xEnd;
 
-      if (Math.abs(xDiff) > Math.abs(yDiff)) {
-    if (xDiff > 0 && currentSlide < totalSlides - 1) {
-      currentSlide++;
-    } else if (xDiff < 0 && currentSlide > 0) {
-      currentSlide--;
-    }
-} else {
-    if (yDiff > 0 && currentSlide < totalSlides - 1) {
-      currentSlide++;
-    } else if (yDiff < 0 && currentSlide > 0) {
-      currentSlide--;
-    }
-}
+      if (Math.abs(xDiff) > 50) {
+        if (xDiff > 0 && currentSlide < totalSlides - 1) {
+          currentSlide++;
+        } else if (xDiff < 0 && currentSlide > 0) {
+          currentSlide--;
+        }
         slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
       }
-      startX = null;
-  startY = null;
+      xStart = null;
     }
   </script>
 </body>
