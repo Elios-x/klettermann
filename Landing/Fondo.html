@@ -181,7 +181,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding-top: 30px;
+    padding-top: 15px;
     box-sizing: border-box;
   }
   .puntos-nav {
@@ -203,6 +203,11 @@
   }
   .punto.activo {
     background-color: #F4743B;
+  }
+  @media (min-width: 769px) {
+    .puntos-nav {
+      display: none;
+    }
   }
 </style>
 </head>
