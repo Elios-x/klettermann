@@ -123,7 +123,7 @@
 
     @media (max-width: 768px) {
   .bloque {
-    padding-top: 15px !important;
+    padding-top: 30px !important;
   }
   body {
     overflow-y: hidden;
@@ -152,6 +152,11 @@
       }
     }
     @media (min-width: 769px) {
+  .bloques {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
     .bloques {
       flex-direction: column;
       width: 100vw;
@@ -209,6 +214,11 @@
     background-color: #F4743B;
   }
   @media (min-width: 769px) {
+  .bloques {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
     .puntos-nav {
   display: flex;
       display: none !important;
@@ -220,11 +230,6 @@
   <div class="cabecera">
     <img src="Foto.png" alt="Foto" class="foto" />
     <div class="nombre">Elias Salvatierra</div>
-  </div>
-  <div class="puntos-nav">
-    <span class="punto" id="punto0"></span>
-    <span class="punto" id="punto1"></span>
-    <span class="punto" id="punto2"></span>
   </div>
 
   <div class="bloques" id="slider">
@@ -251,11 +256,6 @@
       </div>
       <img src="Logo.png" alt="Logo" class="logo" />
     </div>
-  </div>
-  <div class="puntos-nav">
-    <span class="punto" id="punto0"></span>
-    <span class="punto" id="punto1"></span>
-    <span class="punto" id="punto2"></span>
   </div>
 
   <script>
