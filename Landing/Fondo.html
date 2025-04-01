@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -89,60 +90,51 @@
       margin-bottom: 20px;
     }
 
-    .dato {
+    .linea-contacto {
       display: flex;
       align-items: center;
-      color: var(--color-naranja);
       gap: 10px;
+      margin: 5px 0;
     }
 
-    .dato i {
+    .icono {
       color: var(--color-azul);
+      font-style: normal;
+      font-size: 20px;
+      min-width: 30px;
+    }
+
+    .dato-link {
+      color: var(--color-naranja);
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .dato-link:hover {
+      text-decoration: underline;
     }
 
     .logo {
-      max-width: 195px; display: block; margin: 390px auto 0 auto;
-      height: auto;
+      max-width: 97.5px;
+      margin-top: 97.5px;
+      margin-left: auto;
+      display: block;
     }
 
     @media (max-width: 768px) {
-  .foto {
-    width: 150px;
-    height: 150px;
-  }
-  .nombre {
-    font-size: 45px;
-  }
-  .logo {
-    max-width: 97.5px;
-    margin-top: 97.5px;
-    margin-left: auto;
-    display: block;
-  }
-  .icono {
-    color: var(--color-azul);
-    font-style: normal;
-    font-size: 20px;
-    min-width: 30px;
-  }
-  .linea-contacto {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 5px 0;
-  }
-  .dato-link {
-    color: var(--color-naranja);
-    text-decoration: none;
-    font-size: 16px;
-  }
-  .dato-link:hover {
-    text-decoration: underline;
-  }
-  .dato i {
-    color: var(--color-azul);
-  }
-}
+      .foto {
+        width: 150px;
+        height: 150px;
+      }
+      .nombre {
+        font-size: 45px;
+      }
+      .logo {
+        margin-top: 97.5px;
+        margin-left: auto;
+        display: block;
+      }
+    }
   </style>
 </head>
 <body>
@@ -164,13 +156,13 @@
     </div>
     <div class="bloque">
       <div class="contacto">
-        <div class="dato">
-          <span class="icono">📞</span>
-          <span>+49 15753100729</span>
+        <div class="linea-contacto">
+          <div class="icono">📞</div>
+          <a href="tel:+4915753100729" class="dato-link">+49 15753100729</a>
         </div>
-        <div class="dato">
-          <span class="icono">✉️</span>
-          <span>elias@klettermann.com</span>
+        <div class="linea-contacto">
+          <div class="icono">✉️</div>
+          <a href="mailto:elias@klettermann.com" class="dato-link">elias@klettermann.com</a>
         </div>
       </div>
       <img src="Logo.png" alt="Logo" class="logo" />
