@@ -194,6 +194,23 @@
   .punto.activo {
     background-color: #F4743B;
   }
+  .bloques {
+    display: flex;
+    flex-direction: row;
+    width: 300vw;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+  }
+  .bloque {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    width: 100vw;
+  }
 </style>
 </head>
 <body>
@@ -265,7 +282,6 @@
           currentSlide--;
         }
         slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
-updatePuntos();
       }
       xStart = null;
     }
