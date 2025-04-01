@@ -174,12 +174,34 @@
       display: block;
     }
   }
+  .puntos-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    padding-bottom: 20px;
+  }
+  .punto {
+    width: 14px;
+    height: 14px;
+    border: 2px solid #3C6D71;
+    border-radius: 50%;
+    background-color: black;
+  }
+  .punto.activo {
+    background-color: #F4743B;
+  }
 </style>
 </head>
 <body>
   <div class="cabecera">
     <img src="Foto.png" alt="Foto" class="foto" />
     <div class="nombre">Elias Salvatierra</div>
+  </div>
+  <div class="puntos-nav">
+    <span class="punto" id="punto0"></span>
+    <span class="punto" id="punto1"></span>
+    <span class="punto" id="punto2"></span>
   </div>
 
   <div class="bloques" id="slider">
@@ -206,6 +228,11 @@
       </div>
       <img src="Logo.png" alt="Logo" class="logo" />
     </div>
+  </div>
+  <div class="puntos-nav">
+    <span class="punto" id="punto0"></span>
+    <span class="punto" id="punto1"></span>
+    <span class="punto" id="punto2"></span>
   </div>
 
   <script>
@@ -235,9 +262,44 @@
           currentSlide--;
         }
         slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
+updatePuntos();
       }
       xStart = null;
     }
-  </script>
+  function updatePuntos() {
+  for (let i = 0; i < totalSlides; i++) {
+    document.getElementById(`punto${i}`).classList.remove("activo");
+  }
+  document.getElementById(`punto${currentSlide}`).classList.add("activo");
+}
+
+// Inicializar
+updatePuntos();
+// Carrusel infinito
+function handleTouchEnd(evt) {
+  if (startX === null || startY === null) return;
+  let endX = evt.changedTouches[0].clientX;
+  let endY = evt.changedTouches[0].clientY;
+  let xDiff = startX - endX;
+  let yDiff = startY - endY;
+  if (Math.abs(xDiff) > Math.abs(yDiff)) {
+    if (xDiff > 0) {
+      currentSlide = (currentSlide + 1) % totalSlides;
+    } else {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    }
+  } else {
+    if (yDiff > 0) {
+      currentSlide = (currentSlide + 1) % totalSlides;
+    } else {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    }
+  }
+  slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
+  updatePuntos();
+  startX = null;
+  startY = null;
+}
+</script>
 </body>
 </html>
