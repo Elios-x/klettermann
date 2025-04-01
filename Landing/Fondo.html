@@ -243,30 +243,6 @@
     }
   }
 </style>
-<style>
-.puntos-nav {
-  display: flex;
-  position: fixed;
-  bottom: 40px;
-  left: 0;
-  width: 100%;
-  justify-content: center;
-  gap: 10px;
-  z-index: 9999;
-}
-
-.punto {
-  width: 14px;
-  height: 14px;
-  border: 2px solid #3C6D71;
-  border-radius: 50%;
-  background-color: black;
-}
-
-.punto.activo {
-  background-color: #F4743B;
-}
-</style>
 </head>
 <body>
   <div class="cabecera">
@@ -279,16 +255,16 @@
       <p>
         Ich bin ein guatemaltekischer Techniker, spezialisiert auf Arbeiten in der Höhe und Seilzugangstechnik, mit internationaler Erfahrung in anspruchsvollen Projekten in Katar, Dubai und Abu Dhabi. Diese Arbeiten habe ich unter der Zertifizierung IRATA Level 1 sowie mit dem IPAF-Bedienerausweis ausgeführt. Als Senior Rigger war ich an kritischen Einsätzen beteiligt und habe an technischen Installations und Wartungsarbeiten in großer Höhe mitgewirkt stets unter Einhaltung hoher Sicherheitsstandards.
       <br /><br /><span style="color:#F4743B;">●</span><span style="color:#3C6D71;">○</span><span style="color:#3C6D71;">○</span></p>
-    </div>
+    <div class="puntos-nav-static">● ○ ○</div></div>
     <div class="bloque">
       <p>
         Dank meiner zertifizierten Ausbildung (FISAT Level 2 und IPAF) kann ich mich schnell in Teams integrieren, die nach strengen Protokollen arbeiten. Ich bringe technische Präzision, Eigenverantwortung und eine lösungsorientierte Denkweise mit. Darüber hinaus bin ich es gewohnt, in komplexen und dynamischen Umgebungen zu arbeiten, was mir ermöglicht, mich rasch anzupassen, technische Probleme vor Ort zu lösen und die operative Effizienz aufrechtzuerhalten.
       <br /><br /><span style="color:#3C6D71;">○</span><span style="color:#F4743B;">●</span><span style="color:#3C6D71;">○</span></p>
-    </div>
+    <div class="puntos-nav-static">○ ● ○</div></div>
     <div class="bloque datos-logo"><div class="contenedor-interno"><div class="contacto">
         <div class="linea-contacto">
           <div class="linea-contacto">
-  
+  <div class="puntos-nav-static">○ ○ ●</div>
 </div></div>
           <a href="tel:+4915753100729" class="dato-link">+49 15753100729</a>
         </div>
@@ -362,118 +338,5 @@ function handleTouchEnd(evt) {
   startX = null;
 }
 </script>
-
-<script>
-  function updatePuntos() {
-    for (let i = 0; i < totalSlides; i++) {
-      const punto = document.getElementById(`punto${i}`);
-      if (punto) {
-        punto.classList.remove("activo");
-      }
-    }
-    const active = document.getElementById(`punto${currentSlide}`);
-    if (active) {
-      active.classList.add("activo");
-    }
-  }
-</script>
-
-
-<script>
-let slider = document.getElementById('slider');
-let currentSlide = 0;
-let totalSlides = 3;
-let startX = null;
-
-function handleTouchStart(evt) {
-  startX = evt.touches[0].clientX;
-}
-
-function handleTouchEnd(evt) {
-  if (startX === null) return;
-  let endX = evt.changedTouches[0].clientX;
-  let xDiff = startX - endX;
-  if (Math.abs(xDiff) > 50) {
-    if (xDiff > 0 && currentSlide < totalSlides - 1) {
-      currentSlide++;
-    } else if (xDiff < 0 && currentSlide > 0) {
-      currentSlide--;
-    }
-    slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
-    updatePuntos();
-  }
-  startX = null;
-}
-
-function updatePuntos() {
-  for (let i = 0; i < totalSlides; i++) {
-    const punto = document.getElementById(`punto${i}`);
-    if (punto) {
-      punto.classList.remove("activo");
-    }
-  }
-  const active = document.getElementById(`punto${currentSlide}`);
-  if (active) {
-    active.classList.add("activo");
-  }
-}
-
-window.addEventListener('touchstart', handleTouchStart, false);
-window.addEventListener('touchend', handleTouchEnd, false);
-
-// Inicializamos los puntos al cargar
-updatePuntos();
-</script>
-
-
-<script>
-  let slider = document.getElementById('slider');
-  let currentSlide = 0;
-  let totalSlides = 3;
-  let startX = null;
-
-  // Configurar los eventos táctiles correctamente para dispositivos iOS
-  function handleTouchStart(evt) {
-    const touch = evt.touches[0];
-    startX = touch.clientX;
-  }
-
-  function handleTouchEnd(evt) {
-    if (startX === null) return;
-    let endX = evt.changedTouches[0].clientX;
-    let xDiff = startX - endX;
-    if (Math.abs(xDiff) > 50) {
-      if (xDiff > 0 && currentSlide < totalSlides - 1) {
-        currentSlide++;
-      } else if (xDiff < 0 && currentSlide > 0) {
-        currentSlide--;
-      }
-      slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
-      updatePuntos();
-    }
-    startX = null;
-  }
-
-  function updatePuntos() {
-    for (let i = 0; i < totalSlides; i++) {
-      const punto = document.getElementById(`punto${i}`);
-      if (punto) {
-        punto.classList.remove("activo");
-      }
-    }
-    const active = document.getElementById(`punto${currentSlide}`);
-    if (active) {
-      active.classList.add("activo");
-    }
-  }
-
-  // Escuchar los eventos de inicio y fin de toque
-  window.addEventListener('touchstart', handleTouchStart, false);
-  window.addEventListener('touchend', handleTouchEnd, false);
-
-  // Inicializamos los puntos al cargar
-  updatePuntos();
-</script>
-
 </body>
 </html>
