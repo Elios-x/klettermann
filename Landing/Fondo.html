@@ -8,27 +8,33 @@
     :root {
       --color-azul: #3C6D71;
       --color-naranja: #F4743B;
+      --color-verde: #BEEF62;
     }
+
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
+      font-family: sans-serif;
       background-color: #000;
       color: var(--color-azul);
-      font-family: sans-serif;
       overflow: hidden;
+      touch-action: manipulation;
+      -webkit-overflow-scrolling: touch;
     }
+
     .cabecera {
       position: fixed;
       top: 0;
       width: 100%;
+      background-color: #000;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px 0;
-      background-color: #000;
       z-index: 1000;
+      padding: 20px 0;
     }
+
     .foto {
       width: 200px;
       height: 200px;
@@ -36,65 +42,91 @@
       object-fit: cover;
       border: 2px solid var(--color-azul);
     }
+
     .nombre {
+      margin-top: 10px;
       font-size: 45px;
       color: var(--color-naranja);
-      margin-top: 10px;
+      text-align: center;
     }
+
     .bloques {
-      height: 100%;
+      display: flex;
+      flex-direction: row;
+      width: 300vw;
+      height: 100vh;
+      transform: translateX(0);
+      transition: transform 0.3s ease;
+      position: relative;
+      top: 250px;
+    }
+
+    .bloque {
+      width: 100vw;
+      height: calc(100vh - 250px);
+      padding: 20px;
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      position: relative;
-      overflow: hidden;
+      overflow-y: auto;
     }
-    .bloque {
-      position: absolute;
-      width: 100%;
-      max-width: 900px;
-      padding: 40px;
-      box-sizing: border-box;
-      opacity: 0;
-      transition: opacity 0.8s ease;
+
+    .bloque p {
       text-align: justify;
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 800px;
+      hyphens: auto;
+      -webkit-hyphens: auto;
+      word-break: break-word;
     }
-    .bloque.activo {
-      opacity: 1;
-      position: relative;
-    }
+
     .contacto {
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 40px;
     }
+
     .linea-contacto {
-      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       color: var(--color-naranja);
       font-size: 18px;
     }
+
     .dato-link {
       color: var(--color-naranja);
       text-decoration: none;
     }
+
     .dato-link:hover {
       text-decoration: underline;
     }
+
     .puntos-nav {
       position: fixed;
       bottom: 30px;
+      left: 0;
       width: 100%;
       display: flex;
       justify-content: center;
-      gap: 10px;
-      z-index: 1001;
+      gap: 12px;
+      z-index: 9999;
     }
+
     .punto {
-      width: 10px;
-      height: 10px;
+      width: 7px;
+      height: 7px;
       border: 2px solid var(--color-azul);
       border-radius: 50%;
       background-color: transparent;
     }
+
     .punto.activo {
       background-color: var(--color-naranja);
     }
@@ -106,51 +138,64 @@
     <div class="nombre">Elias Salvatierra</div>
   </div>
 
-  <div class="bloques" id="bloques">
-    <div class="bloque activo" id="bloque0">
+  <div class="bloques" id="slider">
+    <div class="bloque">
       <p>
-        Ich bin ein guatemaltekischer Techniker, spezialisiert auf Arbeiten in der Höhe und Seilzugangstechnik, mit internationaler Erfahrung in anspruchsvollen Projekten in Katar, Dubai und Abu Dhabi. Diese Arbeiten habe ich unter der Zertifizierung IRATA Level 1 sowie mit dem IPAF-Bedienerausweis ausgeführt. Als Senior Rigger war ich an kritischen Einsätzen beteiligt und habe an technischen Installations und Wartungsarbeiten in großer Höhe mitgewirkt stets unter Einhaltung hoher Sicherheitsstandards.
+        Ich bin ein guatemaltekischer Techniker mit Erfahrung in Projekten in Katar, Dubai und Abu Dhabi. Dort war ich als Senior Rigger (IRATA L1 & IPAF zertifiziert) tätig, beteiligt an kritischen Einsätzen sowie an technischen Installationen und Wartungen in großer Höhe stets unter Einhaltung hoher Sicherheitsstandards.
       </p>
     </div>
-    <div class="bloque" id="bloque1">
+    <div class="bloque">
       <p>
-        Dank meiner zertifizierten Ausbildung (FISAT Level 2 und IPAF) kann ich mich schnell in Teams integrieren, die nach strengen Protokollen arbeiten. Ich bringe technische Präzision, Eigenverantwortung und eine lösungsorientierte Denkweise mit. Darüber hinaus bin ich es gewohnt, in komplexen und dynamischen Umgebungen zu arbeiten, was mir ermöglicht, mich rasch anzupassen, technische Probleme vor Ort zu lösen und die operative Effizienz aufrechtzuerhalten. Ich wünsche Ihnen viel Erfolg bei Ihrer Entscheidung.
+        Mit zertifizierter Ausbildung (FISAT II und IPAF) arbeite ich effizient in strukturierten Teams, löse technische Probleme eigenverantwortlich und handle lösungsorientiert. Herausforderungen in dynamischen Umgebungen meistere ich zuverlässig. Vielen Dank für Ihren Besuch auf meinem Profil. Ich wünsche Ihnen einen schönen Tag!
       </p>
     </div>
-    <div class="bloque" id="bloque2">
-      <div class="contacto">
-        <div class="linea-contacto">📞 <a href="tel:+4915753100729" class="dato-link" rel="external">+49 15753100729</a></div>
-        <div class="linea-contacto">✉️ <a href="mailto:elias@klettermann.com" class="dato-link" rel="external">elias@klettermann.com</a></div>
-      </div>
+    <div class="bloque contacto">
+      <div class="linea-contacto">📞 <a href="tel:+4915753100729" class="dato-link">+49 15753100729</a></div>
+      <div class="linea-contacto">✉️ <a href="mailto:elias@klettermann.com" class="dato-link">elias@klettermann.com</a></div>
     </div>
   </div>
 
   <div class="puntos-nav">
-    <div class="punto activo" id="punto0"></div>
+    <div class="punto" id="punto0"></div>
     <div class="punto" id="punto1"></div>
     <div class="punto" id="punto2"></div>
   </div>
 
   <script>
-    const bloques = document.querySelectorAll('.bloque');
-    const puntos = document.querySelectorAll('.punto');
-    let current = 0;
+    const slider = document.getElementById('slider');
+    const puntos = [document.getElementById('punto0'), document.getElementById('punto1'), document.getElementById('punto2')];
+    let currentSlide = 0;
+    const totalSlides = 3;
+    let startX = null;
 
-    function showSlide(index) {
-      bloques.forEach((bloque, i) => {
-        bloque.classList.toggle('activo', i === index);
-        puntos[i].classList.toggle('activo', i === index);
+    function updatePuntos() {
+      puntos.forEach((p, i) => {
+        p.classList.toggle('activo', i === currentSlide);
       });
     }
 
-    window.addEventListener('wheel', function(e) {
-      if (e.deltaY > 0) {
-        current = (current + 1) % bloques.length;
-      } else {
-        current = (current - 1 + bloques.length) % bloques.length;
+    slider.addEventListener('touchstart', function (e) {
+      startX = e.touches[0].clientX;
+    }, { passive: false });
+
+    slider.addEventListener('touchend', function (e) {
+      if (startX === null) return;
+      let endX = e.changedTouches[0].clientX;
+      let diff = startX - endX;
+
+      if (Math.abs(diff) > 50) {
+        if (diff > 0 && currentSlide < totalSlides - 1) {
+          currentSlide++;
+        } else if (diff < 0 && currentSlide > 0) {
+          currentSlide--;
+        }
+        slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
+        updatePuntos();
       }
-      showSlide(current);
-    });
+      startX = null;
+    }, { passive: false });
+
+    updatePuntos();
   </script>
 </body>
 </html>
