@@ -11,12 +11,14 @@
       --color-verde: #BEEF62;
     }
 
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
       font-family: sans-serif;
       background-color: #000;
       color: var(--color-azul);
-      overflow-x: hidden;
+      overflow: hidden;
       touch-action: pan-y;
       -webkit-overflow-scrolling: touch;
     }
@@ -39,7 +41,6 @@
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid var(--color-azul);
-      animation: photo-glow 1s ease-in-out;
     }
 
     .nombre {
@@ -49,37 +50,27 @@
       text-align: center;
     }
 
-    @keyframes photo-glow {
-      0% {
-        opacity: 0;
-        transform: scale(0.7);
-        box-shadow: 0 0 0px transparent;
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1);
-        box-shadow: 0 0 20px var(--color-azul);
-      }
-    }
-
     .bloques {
       display: flex;
       flex-direction: row;
       width: 300vw;
+      height: 100vh;
       transform: translateX(0);
       transition: transform 0.3s ease;
-      margin-top: 300px;
+      position: relative;
+      top: 250px;
     }
 
     .bloque {
       width: 100vw;
+      height: calc(100vh - 250px);
       padding: 20px;
       box-sizing: border-box;
-      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      overflow-y: auto;
     }
 
     .bloque p {
@@ -101,7 +92,6 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin: 5px 0;
       color: var(--color-naranja);
       font-size: 18px;
     }
@@ -115,15 +105,27 @@
       text-decoration: underline;
     }
 
-    .puntos-nav-static {
-      position: absolute;
-      bottom: 40px;
+    .puntos-nav {
+      position: fixed;
+      bottom: 30px;
       left: 0;
       width: 100%;
-      text-align: center;
-      font-size: 24px;
-      color: #F4743B;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
       z-index: 9999;
+    }
+
+    .punto {
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--color-azul);
+      border-radius: 50%;
+      background-color: transparent;
+    }
+
+    .punto.activo {
+      background-color: var(--color-naranja);
     }
   </style>
 </head>
@@ -135,25 +137,39 @@
 
   <div class="bloques" id="slider">
     <div class="bloque">
-      <p>Ich bin ein guatemaltekischer Techniker ...</p>
-      <div class="puntos-nav-static">● ○ ○</div>
+      <p>
+        Ich bin ein guatemaltekischer Techniker, spezialisiert auf Arbeiten in der Höhe und Seilzugangstechnik, mit internationaler Erfahrung in anspruchsvollen Projekten in Katar, Dubai und Abu Dhabi. Diese Arbeiten habe ich unter der Zertifizierung IRATA Level 1 sowie mit dem IPAF-Bedienerausweis ausgeführt. Als Senior Rigger war ich an kritischen Einsätzen beteiligt und habe an technischen Installations und Wartungsarbeiten in großer Höhe mitgewirkt stets unter Einhaltung hoher Sicherheitsstandards.
+      </p>
     </div>
     <div class="bloque">
-      <p>Dank meiner zertifizierten Ausbildung ...</p>
-      <div class="puntos-nav-static">○ ● ○</div>
+      <p>
+        Dank meiner zertifizierten Ausbildung (FISAT Level 2 und IPAF) kann ich mich schnell in Teams integrieren, die nach strengen Protokollen arbeiten. Ich bringe technische Präzision, Eigenverantwortung und eine lösungsorientierte Denkweise mit. Darüber hinaus bin ich es gewohnt, in komplexen und dynamischen Umgebungen zu arbeiten, was mir ermöglicht, mich rasch anzupassen, technische Probleme vor Ort zu lösen und die operative Effizienz aufrechtzuerhalten.
+      </p>
     </div>
     <div class="bloque contacto">
       <div class="linea-contacto">📞 <a href="tel:+4915753100729" class="dato-link">+49 15753100729</a></div>
       <div class="linea-contacto">✉️ <a href="mailto:elias@klettermann.com" class="dato-link">elias@klettermann.com</a></div>
-      <div class="puntos-nav-static">○ ○ ●</div>
     </div>
+  </div>
+
+  <div class="puntos-nav">
+    <div class="punto" id="punto0"></div>
+    <div class="punto" id="punto1"></div>
+    <div class="punto" id="punto2"></div>
   </div>
 
   <script>
     const slider = document.getElementById('slider');
+    const puntos = [document.getElementById('punto0'), document.getElementById('punto1'), document.getElementById('punto2')];
     let currentSlide = 0;
     const totalSlides = 3;
     let startX = null;
+
+    function updatePuntos() {
+      puntos.forEach((p, i) => {
+        p.classList.toggle('activo', i === currentSlide);
+      });
+    }
 
     slider.addEventListener('touchstart', function (e) {
       startX = e.touches[0].clientX;
@@ -171,9 +187,12 @@
           currentSlide--;
         }
         slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
+        updatePuntos();
       }
       startX = null;
     }, { passive: false });
+
+    updatePuntos();
   </script>
 </body>
 </html>
