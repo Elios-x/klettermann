@@ -173,7 +173,7 @@
     <div class="nombre">Elias Salvatierra</div>
   </div>
 
-  <div class="bloques" id="slider">
+  <div class="bloques">
     <div class="bloque">
       <p>
         Ich bin ein guatemaltekischer Techniker mit Erfahrung in Projekten in Katar, Dubai und Abu Dhabi. Dort war ich als Senior Rigger (IRATA L1 & IPAF zertifiziert) tätig, beteiligt an kritischen Einsätzen sowie an technischen Installationen und Wartungen in großer Höhe stets unter Einhaltung hoher Sicherheitsstandards.
@@ -197,40 +197,25 @@
   </div>
 
   <script>
-    const slider = document.getElementById('slider');
-    const puntos = [document.getElementById('punto0'), document.getElementById('punto1'), document.getElementById('punto2')];
-    let currentSlide = 0;
-    const totalSlides = 3;
-    let startX = null;
+    const slider = document.querySelector('.bloques');
+    const puntos = [
+      document.getElementById('punto0'),
+      document.getElementById('punto1'),
+      document.getElementById('punto2')
+    ];
 
-    function updatePuntos() {
+    function updatePuntosIndex(index) {
       puntos.forEach((p, i) => {
-        p.classList.toggle('activo', i === currentSlide);
+        p.classList.toggle('activo', i === index);
       });
     }
 
-    slider.addEventListener('touchstart', function (e) {
-      startX = e.touches[0].clientX;
-    }, { passive: false });
+    slider.addEventListener('scroll', () => {
+      const index = Math.round(slider.scrollLeft / window.innerWidth);
+      updatePuntosIndex(index);
+    });
 
-    slider.addEventListener('touchend', function (e) {
-      if (startX === null) return;
-      let endX = e.changedTouches[0].clientX;
-      let diff = startX - endX;
-
-      if (Math.abs(diff) > 50) {
-        if (diff > 0 && currentSlide < totalSlides - 1) {
-          currentSlide++;
-        } else if (diff < 0 && currentSlide > 0) {
-          currentSlide--;
-        }
-        slider.style.transform = `translateX(-${currentSlide * 100}vw)`;
-        updatePuntos();
-      }
-      startX = null;
-    }, { passive: false });
-
-    updatePuntos();
+    updatePuntosIndex(0);
   </script>
 </body>
 </html>
