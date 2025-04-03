@@ -131,6 +131,10 @@
       background-color: var(--color-naranja);
     }
 
+    .escritorio {
+      display: none;
+    }
+
     @media (min-width: 1024px) {
       html, body {
         overflow-y: auto;
@@ -138,25 +142,29 @@
         height: auto;
       }
 
-      .bloques {
-        flex-direction: column;
-        width: 100vw;
-        height: auto;
-        top: 250px;
-        position: relative;
-        padding: 40px 0;
-        gap: 80px;
-      }
-
-      .bloque {
-        width: 100vw;
-        height: auto;
-        padding: 60px 20px;
-        overflow: visible;
-      }
-
-      .puntos-nav {
+      .bloques, .puntos-nav {
         display: none;
+      }
+
+      .escritorio {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 300px 40px 60px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .escritorio p {
+        color: var(--color-azul);
+        font-size: 16px;
+        line-height: 1.6;
+        text-align: justify;
+        margin-bottom: 20px;
+      }
+
+      .escritorio .linea-contacto {
+        margin-top: 40px;
       }
     }
   </style>
@@ -167,6 +175,7 @@
     <div class="nombre">Elias Salvatierra</div>
   </div>
 
+  <!-- Vista móvil -->
   <div class="bloques" id="slider">
     <div class="bloque">
       <p>
@@ -188,6 +197,18 @@
     <div class="punto" id="punto0"></div>
     <div class="punto" id="punto1"></div>
     <div class="punto" id="punto2"></div>
+  </div>
+
+  <!-- Vista escritorio -->
+  <div class="escritorio">
+    <p>
+      Ich bin ein guatemaltekischer Techniker mit Erfahrung in Projekten in Katar, Dubai und Abu Dhabi. Dort war ich als Senior Rigger (IRATA L1 & IPAF zertifiziert) tätig, beteiligt an kritischen Einsätzen sowie an technischen Installationen und Wartungen in großer Höhe stets unter Einhaltung hoher Sicherheitsstandards.
+    </p>
+    <p>
+      Mit zertifizierter Ausbildung (FISAT II und IPAF) arbeite ich effizient in strukturierten Teams, löse technische Probleme eigenverantwortlich und handle lösungsorientiert. Herausforderungen in dynamischen Umgebungen meistere ich zuverlässig. Vielen Dank für Ihren Besuch auf meinem Profil. Ich wünsche Ihnen einen schönen Tag!
+    </p>
+    <div class="linea-contacto">📞 <a href="tel:+4915753100729" class="dato-link">+49 15753100729</a></div>
+    <div class="linea-contacto">✉️ <a href="mailto:elias@klettermann.com" class="dato-link">elias@klettermann.com</a></div>
   </div>
 
   <script>
@@ -228,14 +249,9 @@
         }
         startX = null;
       }, { passive: false });
-    } else {
-      slider.addEventListener('scroll', () => {
-        const index = Math.round(slider.scrollLeft / window.innerWidth);
-        updatePuntos(index);
-      });
-    }
 
-    updatePuntos(0);
+      updatePuntos(0);
+    }
   </script>
 </body>
 </html>
