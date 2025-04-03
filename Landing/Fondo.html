@@ -19,7 +19,7 @@
       background-color: #000;
       color: var(--color-azul);
       overflow: hidden;
-      touch-action: manipulation;
+      touch-action: pan-y;
       -webkit-overflow-scrolling: touch;
     }
 
@@ -78,9 +78,6 @@
       font-size: 16px;
       line-height: 1.6;
       max-width: 800px;
-      hyphens: auto;
-      -webkit-hyphens: auto;
-      word-break: break-word;
     }
 
     .contacto {
@@ -130,6 +127,39 @@
     .punto.activo {
       background-color: var(--color-naranja);
     }
+
+    @media (min-width: 1024px) {
+      html, body {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      .bloques {
+        height: 100vh;
+        width: 300vw;
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        top: 0;
+      }
+
+      .bloque {
+        width: 100vw;
+        height: 100vh;
+        scroll-snap-align: start;
+        overflow: hidden;
+        padding: 40px;
+      }
+
+      .cabecera, .puntos-nav {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -141,17 +171,17 @@
   <div class="bloques" id="slider">
     <div class="bloque">
       <p>
-        Ich bin ein guatemaltekischer Techniker mit Erfahrung in Projekten in Katar, Dubai und Abu Dhabi. Dort war ich als Senior Rigger (IRATA L1 & IPAF zertifiziert) tätig, beteiligt an kritischen Einsätzen sowie an technischen Installationen und Wartungen in großer Höhe stets unter Einhaltung hoher Sicherheitsstandards.
+        En alemán por supuesto: Ich bin ein guatemaltekischer Techniker mit Erfahrung in Projekten in Katar, Dubai und Abu Dhabi. Dort war ich als Senior Rigger (IRATA L1 & IPAF zertifiziert) tätig, beteiligt an kritischen Einsätzen sowie an technischen Installationen und Wartungen in großer Höhe stets unter Einhaltung hoher Sicherheitsstandards.
       </p>
     </div>
     <div class="bloque">
       <p>
-        Mit zertifizierter Ausbildung (FISAT II und IPAF) arbeite ich effizient in strukturierten Teams, löse technische Probleme eigenverantwortlich und handle lösungsorientiert. Herausforderungen in dynamischen Umgebungen meistere ich zuverlässig. Vielen Dank für Ihren Besuch auf meinem Profil. Ich wünsche Ihnen einen schönen Tag!
+        Dank meiner zertifizierten Ausbildung (FISAT Level 2 und IPAF) kann ich mich schnell in Teams integrieren, die nach strengen Protokollen arbeiten. Ich bringe technische Präzision, Eigenverantwortung und eine lösungsorientierte Denkweise mit. Darüber hinaus bin ich es gewohnt, in komplexen und dynamischen Umgebungen zu arbeiten, was mir ermöglicht, mich rasch anzupassen, technische Probleme vor Ort zu lösen und die operative Effizienz aufrechtzuerhalten.
       </p>
     </div>
     <div class="bloque contacto">
-      <div class="linea-contacto">📞 <a href="tel:+4915753100729" class="dato-link">+49 15753100729</a></div>
-      <div class="linea-contacto">✉️ <a href="mailto:elias@klettermann.com" class="dato-link">elias@klettermann.com</a></div>
+      <div class="linea-contacto">📞 <a href="tel:+4915753100729" class="dato-link" rel="external">+49 15753100729</a></div>
+      <div class="linea-contacto">✉️ <a href="mailto:elias@klettermann.com" class="dato-link" rel="external">elias@klettermann.com</a></div>
     </div>
   </div>
 
